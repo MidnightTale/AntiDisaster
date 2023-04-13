@@ -18,6 +18,7 @@ public class AntiDisaster extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
         loadConfig();
         getServer().getPluginManager().registerEvents(this, this);
     }
@@ -38,14 +39,14 @@ public class AntiDisaster extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent event) {
-        if (event.getEntityType() == EntityType.CREEPER) {
+        if (antiCreeperGriefEnabled && event.getEntityType() == EntityType.CREEPER) {
             for (Block block : event.blockList()) {
                 block.getDrops().clear();
             }
             event.blockList().clear();
             event.setYield(0); // Prevent block damage
         }
-        if (event.getEntityType() == EntityType.FIREBALL && ((Fireball) event.getEntity()).getShooter() instanceof Ghast) {
+        if (antiGhastGriefEnabled && event.getEntityType() == EntityType.FIREBALL && ((Fireball) event.getEntity()).getShooter() instanceof Ghast) {
             for (Block block : event.blockList()) {
                 block.getDrops().clear();
             }
@@ -53,5 +54,4 @@ public class AntiDisaster extends JavaPlugin implements Listener {
             event.setYield(0); // Prevent block damage
         }
     }
-
 }
