@@ -1,0 +1,5 @@
+name: AntiDisaster
+version: '${version}'
+main: xyz.hynse.antidisaster.AntiDisaster
+api-version: 1.19
+folia-supported: true
