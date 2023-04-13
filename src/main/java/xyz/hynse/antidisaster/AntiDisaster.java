@@ -38,19 +38,20 @@ public class AntiDisaster extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent event) {
-        if (antiCreeperGriefEnabled && event.getEntityType() == EntityType.CREEPER) {
+        if (event.getEntityType() == EntityType.CREEPER) {
             for (Block block : event.blockList()) {
                 block.getDrops().clear();
             }
             event.blockList().clear();
-            event.setCancelled(true);
+            event.setYield(0); // Prevent block damage
         }
-        if (antiGhastGriefEnabled && event.getEntityType() == EntityType.FIREBALL && ((Fireball) event.getEntity()).getShooter() instanceof Ghast) {
+        if (event.getEntityType() == EntityType.FIREBALL && ((Fireball) event.getEntity()).getShooter() instanceof Ghast) {
             for (Block block : event.blockList()) {
                 block.getDrops().clear();
             }
             event.blockList().clear();
-            event.setCancelled(true);
+            event.setYield(0); // Prevent block damage
         }
     }
+
 }
