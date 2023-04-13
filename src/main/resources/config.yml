@@ -1,0 +1,4 @@
+# Anti-grief plugin configuration
+anti-creeper-grief-enabled: true
+anti-ghast-grief-enabled: true
+anti-enderman-grief-enabled: true
